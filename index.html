@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        div{
+            background: rgba(247, 247, 247, 0.664);
+            text-align: center;
+            width: 600px;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        textarea{
+            width: 500px;
+            height: 300px;
+        }
+        p{
+            color: gray;
+            margin: 0;
+            text-align: end;
+            margin-right: 50px;
+        }
+    </style>
+    <script  async>
+
+        function countWords() {
+          var entryText = document.querySelector('textarea');
+          var count = document.querySelector('p');
+          var matches = entryText.value.match(/[\wа-яё]+[\W]/gi);
+
+          matches ? 
+          count.innerText = 'word count:' + limit(matches, entryText, count):
+          count.innerText ='word count:' + '0' ;
+
+            
+        } 
+        
+        function limit(matches, entryText, count) {
+            if (matches.length >= 200 ){
+                entryText.maxLength = entryText.value.length;
+                count.style.color = 'red';
+            } else{
+                entryText.removeAttribute('maxLength');
+                count.style.color = 'grey';
+            }
+
+            return matches.length;
+        }
+        
+
+    </script>
+</head>
+    <body>
+        <div> 
+            <h1>Word count</h1>
+            <textarea  oninput="countWords()" ></textarea>
+           
+            <p></p>
+        </div>
+    </body>
+</html>
